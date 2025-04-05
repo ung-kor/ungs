@@ -38,7 +38,7 @@ build {
 Some nice description about the image being published to HCP Packer Registry.
     EOT
     bucket_labels = {
-      "owner"   = "seobuk"
+      "owner"   = "ung"
       "os"      = "Ubuntu"
       "nomad"   = "server"
       "version" = "1.0"
