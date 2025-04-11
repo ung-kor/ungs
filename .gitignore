@@ -1,0 +1,31 @@
+# Terraform 상태 및 백업 파일
+*.tfstate
+*.tfstate.backup
+
+# Terraform crash 로그
+crash.log
+
+# Terraform plan 파일
+*.tfplan
+
+# .terraform 디렉토리 (모듈, provider 캐시 등)
+.terraform/
+
+# 환경변수 파일 (보통 민감정보 포함)
+*.tfvars
+*.tfvars.json
+
+# override 파일 (보통 로컬 커스터마이징용)
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Sensitive locals
+.terraform.lock.hcl
+
+# IDE 관련 파일
+.vscode/
+.idea/
+*.swp
+.DS_Store
