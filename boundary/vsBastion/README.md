@@ -49,21 +49,21 @@ ssh_username          = "ubuntu"
 ## Bastion vs. Boundary 간단 비교
 
 ### Bastion Host와 Boundary의 차이점 간단 비교
-📌  접근 방식
-Bastion: SSH 키를 이용한 직접 접속 방식을 사용
-Boundary: 중앙에서 발급된 세션을 통해 간접적으로 리소스에 연결
-📌  인증 방식
-Bastion: 키 기반 인증에 의존하는 반면
-Boundary: OIDC, LDAP 같은 외부 인증 시스템과 연동할 수 있어 더 유연하고 안전한 사용자 인증이 가능
-📌  접근 제어
-Bastion: 네트워크나 보안 그룹 수준에서 접근 제어
-Boundary: RBAC을 통해 리소스 단위로 세세한 권한을 부여
-📌  감사 및 로깅
-Bastion: SSH 로그나 CloudTrail 등으로 간접적인 감사
-Boundary: 세션 생성/종료, 사용자 식별 등 상세한 로깅 기능을 기본으로 제공
-📌  보안성 및 운영 효율
-Bastion: 키 유출에 취약하고 수동 관리가 많음
-Boundary: 키 공유가 없고 자동화된 세션 관리로 운영 효율을 높힘
+- 📌  접근 방식
+  - Bastion: SSH 키를 이용한 직접 접속 방식을 사용
+  - Boundary: 중앙에서 발급된 세션을 통해 간접적으로 리소스에 연결
+- 📌  인증 방식
+  - Bastion: 키 기반 인증에 의존하는 반면
+  - Boundary: OIDC, LDAP 같은 외부 인증 시스템과 연동할 수 있어 더 유연하고 안전한 사용자 인증이 가능
+- 📌  접근 제어
+  - Bastion: 네트워크나 보안 그룹 수준에서 접근 제어
+  - Boundary: RBAC을 통해 리소스 단위로 세세한 권한을 부여
+- 📌  감사 및 로깅
+  - Bastion: SSH 로그나 CloudTrail 등으로 간접적인 감사
+  - Boundary: 세션 생성/종료, 사용자 식별 등 상세한 로깅 기능을 기본으로 제공
+- 📌  보안성 및 운영 효율
+  - Bastion: 키 유출에 취약하고 수동 관리가 많음
+  - Boundary: 키 공유가 없고 자동화된 세션 관리로 운영 효율을 높힘
 
 ### Terraform으로 구성 전략
 
