@@ -96,7 +96,6 @@ Metadata:                                                                       
   Refresh After:  60s
 Status:
   Last Generation:  2
-  Secret MAC:       S56tAdzKQd4LgC+2s/rB+zD+Vg2anaESzTw1b36tpK4=
 Events:
   Type    Reason         Age                   From                Message
   ----    ------         ----                  ----                -------
