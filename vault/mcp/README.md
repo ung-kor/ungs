@@ -26,9 +26,6 @@ seal/unseal the Vault or re-authenticate.
 Unseal Key: 111
 Root Token: 111
 ...
-
-# Vault MCP Server Start
-docker run --platform linux/amd64 -i --rm -e VAULT_ADDR=http://127.0.0.1:8200 -e VAULT_TOKEN=111 ashgw/vault-mcp:latest
 ```
 
 - Cursor Settings
@@ -36,20 +33,22 @@ docker run --platform linux/amd64 -i --rm -e VAULT_ADDR=http://127.0.0.1:8200 -e
 ```json
 {
   "mcpServers": {
-    "Vault MCP": {
+    "vault": {
       "command": "docker",
       "args": [
         "run",
-        "--platform",
-        "linux/amd64",
         "-i",
         "--rm",
         "-e",
-        "VAULT_ADDR=http://127.0.0.1:8200",
+        "VAULT_URL",
         "-e",
-        "VAULT_TOKEN=111",
-        "ashgw/vault-mcp:latest"
-      ]
+        "VAULT_TOKEN",
+        "matthewschuchard/vault-mcp-server"
+      ],
+      "env": {
+        "VAULT_URL": "<VAULT SERVER CLUSTER URL>",
+        "VAULT_TOKEN": "<VAULT AUTHENTICATION TOKEN>"
+      }
     }
   }
 }
