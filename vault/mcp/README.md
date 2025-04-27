@@ -67,4 +67,9 @@ docker run --platform linux/amd64 -i --rm -e VAULT_ADDR=http://127.0.0.1:8200 -e
 ### Get 테스트
 - ![cursor에서 get 요청](./images/secret-get1.png)
 - ![get 명령어 자동 완성 및 실행](./images/secret-get2.png)
-- ![실행 결과 확인](./images/secret-get3.png)
+- ![실행결과 확인](./images/secret-get3.png)
+
+### Userpass 생성 테스트
+- ![userpass 생성 문의](./images/userpass1.png)
+- ![userpass 생성 요청](./images/userpass2.png)
+- ![실행결과 확인](./images/userpass3.png)
