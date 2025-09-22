@@ -142,7 +142,7 @@ webhook:
   name: bitbucket
   path: /bitbucket-push
   port: 12000
-  host: argo-events-dev.connecteve.com
+  host: argo-wf-evnet.com
 
 eventBus:
   name: default
@@ -249,7 +249,7 @@ kubectl apply -f {app-name}/sensor-{app-name}.yaml
 Bitbucket 리포지토리 설정에서 다음 URL로 웹훅 추가:
 
 ```
-https://argo-events-dev.connecteve.com/bitbucket-push
+https://argo-wf-evnet.com/bitbucket-push
 ```
 
 **웹훅 설정 옵션:**
@@ -300,91 +300,3 @@ https://argo-events-dev.connecteve.com/bitbucket-push
    ```bash
    kubectl apply -f {new-app}/
    ```
-
-## 트러블슈팅
-
-### 🔍 일반적인 문제들
-
-#### 1. 웹훅이 트리거되지 않는 경우
-
-```bash
-# EventSource 상태 확인
-kubectl get eventsource -n argocd
-kubectl describe eventsource bitbucket -n argocd
-
-# 센서 상태 확인
-kubectl get sensor -n argocd
-kubectl describe sensor {app-name}-sensor -n argocd
-
-# 웹훅 엔드포인트 접근성 확인
-curl -X POST https://argo-events-dev.connecteve.com/bitbucket-push \
-  -H "Content-Type: application/json" \
-  -d '{"test": "data"}'
-```
-
-#### 2. 워크플로우 실행 실패
-
-```bash
-# 워크플로우 상태 확인
-kubectl get workflow -n argocd
-kubectl describe workflow {workflow-name} -n argocd
-
-# 워크플로우 로그 확인
-kubectl logs -n argocd {workflow-pod-name}
-
-# 시크릿 확인
-kubectl get secret {app-name} -n argocd -o yaml
-```
-
-#### 3. 시크릿 관련 문제
-
-```bash
-# 시크릿 존재 확인
-kubectl get secret {app-name} -n argocd
-
-# 시크릿 내용 확인 (base64 디코딩)
-kubectl get secret {app-name} -n argocd -o jsonpath='{.data.bitbucket-username}' | base64 -d
-
-# Vault 동기화 상태 확인 (VSO 사용 시)
-kubectl get vaultstaticsecret -n argocd
-kubectl describe vaultstaticsecret {app-name}-vault-secret -n argocd
-```
-
-#### 4. Docker 빌드 실패
-
-```bash
-# ECR 인증 확인
-aws ecr get-login-password --region {region} | \
-  docker login --username AWS --password-stdin {ecr-url}
-
-# Kaniko 로그 확인
-kubectl logs -n argocd {kaniko-pod-name}
-```
-
-### 🚨 알려진 제한사항
-
-1. **브랜치 필터링**: 현재 main 브랜치만 지원
-2. **동시 실행**: 같은 리포지토리의 동시 빌드는 지원하지 않음
-3. **시크릿 로테이션**: 수동으로 시크릿 업데이트 필요 (Vault 사용 시 자동)
-
-### 📞 지원
-
-문제가 발생한 경우:
-
-1. **로그 수집**: 관련 리소스의 로그를 수집
-2. **상태 확인**: 모든 관련 리소스의 상태 점검
-3. **Slack 채널**: `#dev-ci-alert` 채널에서 알림 확인
-4. **Argo UI**: [Argo Workflows UI](https://argo-workflow-dev.connecteve.com)에서 상세 정보 확인
-
----
-
-## 📚 참고 자료
-
-- [Argo Events Documentation](https://argoproj.github.io/argo-events/)
-- [Argo Workflows Documentation](https://argoproj.github.io/argo-workflows/)
-- [Vault Secrets Operator](../hcp_vault_secrets/vso/)
-- [Helm Documentation](https://helm.sh/docs/)
-
----
-
-*이 문서는 `~/git_repo/infrastructure/kubernetes/helm-dev-argo-webhook` 기반으로 작성되었습니다.*
