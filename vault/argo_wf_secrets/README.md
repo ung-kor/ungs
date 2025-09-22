@@ -278,21 +278,21 @@ https://argo-wf-evnet.com/bitbucket-push
 
 2. **워크플로우 템플릿 복사 및 수정**:
    ```bash
-   cp demo-koa-backend/workflowtemplate-demo-koa-backend.yaml \
+   cp example-app/workflowtemplate-example-app.yaml \
       {new-app}/workflowtemplate-{new-app}.yaml
    
    # 템플릿 내 이름 및 시크릿 참조 수정
-   sed -i 's/demo-koa-backend/{new-app}/g' \
+   sed -i 's/example-app/{new-app}/g' \
       {new-app}/workflowtemplate-{new-app}.yaml
    ```
 
 3. **센서 복사 및 수정**:
    ```bash
-   cp demo-koa-backend/sensor-demo-koa-backend.yaml \
+   cp example-app/sensor-example-app.yaml \
       {new-app}/sensor-{new-app}.yaml
    
    # 리포지토리 이름 필터 수정
-   sed -i 's/demo-koa-backend/{new-app}/g' \
+   sed -i 's/example-app/{new-app}/g' \
       {new-app}/sensor-{new-app}.yaml
    ```
 
