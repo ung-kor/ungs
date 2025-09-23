@@ -33,7 +33,7 @@ graph TB
         SA[사무실 Apps] 
     end
     
-    subgraph "AWS Environment"
+    subgraph "AWS EKS Environment"
         NLB --> |mTLS Server| AAP[AWS APISIX]
         AAP --> |mTLS| AA[AWS Apps]
         VSO[Vault Secrets Operator] --> K8S[Kubernetes Secrets]
