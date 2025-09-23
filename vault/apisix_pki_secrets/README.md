@@ -29,15 +29,15 @@ AWS와 Site 간 APISIX Gateway mTLS 통신을 위한 PKI 인증서 관리 솔루
 
 ```mermaid
 graph TB
-    subgraph "사무실 Environment"
-        SA[사무실 Apps] 
+    subgraph "IDC Environment"
+        SVSO[Vault Secrets Operator] --> SK8S[Kubernetes Secrets]
+        SK8S --> SA[IDC Apps] 
     end
     
     subgraph "AWS EKS Environment"
         NLB --> |mTLS Server| AAP[AWS APISIX]
         AAP --> |mTLS| AA[AWS Apps]
         VSO[Vault Secrets Operator] --> K8S[Kubernetes Secrets]
-        K8S --> SAP[Cert Secrets]
         K8S --> AAP
     end
     
